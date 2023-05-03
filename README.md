@@ -20,15 +20,24 @@ public class MyApp {
 ```
 By annotating the main class with `@SpringBootApplication`, you enable the auto-configuration features and component scanning for your application. Running this class will start a web server and make your application accessible through an HTTP endpoint.
 
+Read More: 
+* [What are annotations](annotations.md)
+* [Spring, Spring MVC, Spring Boot](springs.md)
+
+
 ## Setting Up Your Development Environment for Spring Boot with VSCode
 
-Visual Studio Code, commonly referred to as VSCode, is a popular open-source code editor that supports a wide range of programming languages, including Java. It offers an extensive ecosystem of extensions that can help set up a productive development environment for Spring Boot. In this section, we'll discuss the process of setting up VSCode for Spring Boot development.
+You can use any IDE. Here as an example I'll use VSCode. 
+[Visual Studio Code](https://code.visualstudio.com/download), commonly referred to as VSCode, is a popular open-source code editor that supports a wide range of programming languages, including Java. It offers an extensive ecosystem of extensions that can help set up a productive development environment for Spring Boot. In this section, we'll discuss the process of setting up VSCode for Spring Boot development.
                 
-To begin, you'll need to install the required extensions for Java and Spring Boot development. Open the extensions view in VSCode by clicking on the Extensions icon on the sidebar or by pressing `Ctrl+Shift+X`. Install the "Java Extension Pack" by Microsoft, which includes essential Java development tools like Language Support for Java, Debugger for Java, and Maven for Java. Next, install the "Spring Boot Extension Pack" by Pivotal, which provides support for Spring Boot development, such as syntax highlighting, code snippets, and integrated commands.
+To begin, you'll need to install the required extensions for Java and Spring Boot development. Open the extensions view in VSCode by clicking on the Extensions icon on the sidebar or by pressing `Ctrl+Shift+X` (`Command+Shift+X` on Mac). Install the "Java Extension Pack" by Microsoft, which includes essential Java development tools like Language Support for Java, Debugger for Java, and Maven for Java. Next, install the "Spring Boot Extension Pack" by Pivotal, which provides support for Spring Boot development, such as syntax highlighting, code snippets, and integrated commands.
                 
-Once the necessary extensions are installed, you can create a new Spring Boot projec using the Spring Initializr web service. Press `Ctrl+Shift+P` to open the command palette and type "Spring Initializr" to find the "Spring Initializr: Generat Maven Project" or "Spring Initializr: Generate a Gradle Project" commands. Select the desired build tool, then follow the prompts to choose your project type, packaging, Java version, and other options. Upon completion, the new Spring Boot project will be generated and opened in VSCode.
+Once the necessary extensions are installed, you can create a new Spring Boot projec using the Spring Initializr web service. Press `Ctrl+Shift+P` (`Command+Shift+P` on Mac) to open the command palette and type "Spring Initializr" to find the "Spring Initializr: Generat Maven Project" or "Spring Initializr: Generate a Gradle Project" commands. Select the desired build tool, then follow the prompts to choose your project type, packaging, Java version, and other options. Upon completion, the new Spring Boot project will be generated and opened in VSCode.
                 
 With your Spring Boot project set up, you can now explore its structure and start coding. The Java Extension Pack provides features like intelligent code completion, quick fixes, and refactoring, which can greatly enhance your productivity. Furthermore, the Spring Boot Extension Pack offers features such as live application information, endpoint discovery, and the ability to run and debug your application directly within VSCode. To run your Spring Boot application, open the main class (usually annotated with `@SpringBootApplication`) and click on the "Run" or "Debug" code lens above the main method. This will start your application and allow you to access it through a local HTTP endpoint.
+
+Read More:
+* [Installing everything you need](install-env.md)
 
 ## Hello world application
 
@@ -99,6 +108,10 @@ To run the application, open a terminal/command prompt, navigate to the project 
 mvn spring-boot:run
 ```
 This command will download the required dependencies, compile the project, and start the embedded Tomcat server. Once the application is running, you can access the "Hello World" endpoint at `http://localhost:8080/`.
+
+Read More:
+* [What is maven](maven.md)
+* [What is gradle](gradle.md)
 
 ## Creating a Spring Boot Project: Project Structure and Best Practices
 
@@ -247,6 +260,10 @@ To handle more complex scenarios, you can also utilize other annotations like `@
 
 By leveraging Spring Boot and Spring MVC, you can quickly and efficiently build RESTful APIs that are easy to maintain, test, and scale. The framework provides built-in support for handling various aspects of web development, such as request routing, data binding, and content negotiation, allowing you to focus on implementing your application's core functionality.
 
+Read More:
+* [What is MVC](mvc.md)
+
+
 ## Data Persistence: Spring Data JPA and Database Integration
 
 Spring Data JPA is a powerful module within the Spring ecosystem that simplifies data persistence and database integration in your Spring Boot applications. It provides an abstraction layer on top of the Java Persistence API (JPA), offering a convenient way to implement data access layers with minimal boilerplate code. By using Spring Data JPA, you can easily integrate with various relational databases such as MySQL, PostgreSQL, or Oracle, as well as in-memory databases like H2 or HSQLDB.
@@ -394,6 +411,21 @@ Testing and debugging are essential aspects of developing robust and maintainabl
 
 Unit tests focus on testing individual components or classes in isolation. In a Spring Boot application, you can use frameworks like JUnit and Mockito to write unit tests for your services, controllers, or other components. Spring Boot provides the "spring-boot-starter-test" dependency, which includes JUnit, Mockito, AssertJ, and other testing libraries. Add this dependency to your project's build configuration with the "test" scope (Maven's `pom.xml` or Gradle's `build.gradle`).
 
+Here's an example of pom.xml:
+```xml
+<!-- Some important stuff -->
+<dependencies>
+    <!-- Your other dependencies go here -->
+
+    <!-- Add the spring-boot-starter-test dependency -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+```
+
 Here's an example of a unit test for a `UserService` class:
 ```java
 package com.example.userapi;
@@ -476,6 +508,10 @@ public class UserControllerIntegrationTest {
 ```
 In this example, we use the `@SpringBootTest` and `@AutoConfigureMockMvc` annotations to create an integration test with a `MockMvc` instance. The `testGetAllUsers()` test case verifies the behavior of the `getAllUsers()`
 
+Read More:
+* [More dependencies](dependencies.md)
+
+
 ## Microservices and Deploying Spring Boot Applications to the Cloud
 
 Microservices architecture is a software development approach that structures an application as a collection of loosely coupled, independently deployable services. These services are organized around business capabilities and communicate through lightweight protocols, such as HTTP or messaging queues. Spring Boot, with its modularity and lightweight nature, is an excellent fit for building microservices.
@@ -521,6 +557,42 @@ After pushing your code, Heroku will build and deploy your Spring Boot microserv
 To manage multiple microservices, you can use container orchestration tools like Kubernetes or Docker Swarm. Spring Boot applications can be easily containerized using Docker, which makes it simple to deploy, scale, and manage your microservices in various cloud environments.
 
 In conclusion, Spring Boot is an excellent choice for building and deploying microservices in the cloud. With the help of Spring Cloud, you can create scalable, resilient, and maintainable services that can be easily deployed and managed on various cloud platforms.
+
+## Using Docker
+
+Dockerizing a Spring Boot application involves creating a Dockerfile, building a Docker image, and running the application inside a Docker container. Here's a step-by-step guide to help you dockerize your Spring Boot application:
+
+1. `Install Docker`: If you haven't already, install Docker on your machine. You can follow the official installation instructions for your specific operating system at https://docs.docker.com/get-docker/.
+1. `Create a Dockerfile`: In the root directory of your Spring Boot project, create a new file called Dockerfile. This file will contain instructions for building a Docker image of your application.
+1. `Edit the Dockerfile`: Add the following content to the `Dockerfile`. This example assumes that you have a Spring Boot application packaged as an executable JAR file. Replace `my-app.jar` with the name of your JAR file.
+    ```Dockerfile
+    # Use the official OpenJDK image as the base image
+    FROM openjdk:11-jre-slim
+
+    # Set the working directory inside the container
+    WORKDIR /app
+
+    # Copy the JAR file from your local machine to the container
+    COPY target/my-app.jar /app/my-app.jar
+
+    # Expose the port your application will run on
+    EXPOSE 8080
+
+    # Set the entrypoint command to run the JAR file
+    ENTRYPOINT ["java", "-jar", "my-app.jar"]
+    ```
+1. `Build the Docker image`: Open a terminal in your project's root directory, and run the following command to build the Docker image. Replace `my-image` with a suitable name for your image.
+    ```bash
+    docker build -t my-image .
+    ```
+    This command will build a Docker image using the instructions provided in the Dockerfile. The -t flag specifies the name of the image, and the . at the end tells Docker to use the current directory (which should contain the Dockerfile).
+1. `Run the Docker container`: After building the Docker image, you can run a Docker container using that image. Run the following command to start a new container. Replace `my-container` with a suitable name for your container and `my-image` with the name you used in the previous step.
+    ```bash
+    docker run -d --name my-container -p 8080:8080 my-image
+    ```
+    This command tells Docker to run a new container in detached mode (`-d`) with the specified name (`--name my-container`) and to map the container's port 8080 to the host's port 8080 (`-p 8080:8080`).
+
+Your Spring Boot application is now running inside a Docker container. You can access it via http://localhost:8080 (or the IP address of the machine running the Docker container if you're running it on a remote server).
 
 ## Using Kubernetes (k8s) 
 
@@ -670,4 +742,12 @@ public class AsyncService {
 
 By applying these performance tuning and scaling techniques, you can ensure that your Spring Boot applications remain performant and scalable, providing a consistent and satisfying experience for your users. Continuously monitoring and optimizing your applications will help you identify potential issues early on and keep your applications running smoothly as they grow.
 
+Read More: 
+* [What are annotations](annotations.md)
+* [Spring, Spring MVC, Spring Boot](springs.md)
+* [Installing everything you need](install-env.md)
+* [What is maven](maven.md)
+* [What is gradle](gradle.md)
+* [What is MVC](mvc.md)
+* [More dependencies](dependencies.md)
 
